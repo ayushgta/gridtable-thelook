@@ -87,11 +87,6 @@ view: event_list {
   }
 }
 
-
-
-
-
-
 explore: customer_list {}
 view: customer_list {
   derived_table: {
@@ -121,14 +116,34 @@ view: customer_list {
       SELECT 'Rentify','Free','SMB','1.0', '202-282-8843';;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
-
   dimension: customer_name {
     type: string
     sql: ${TABLE}.customer_name ;;
+
+    action: {
+      label: "Email Customer"
+      url: "https://desolate-refuge-53336.herokuapp.com/posts"
+      icon_url: "https://sendgrid.com/favicon.ico"
+      param: {
+        name: "some_auth_code"
+        value: "abc123456"
+      }
+      form_param: {
+        name: "Subject"
+        required: yes
+        default: "Latest Release Rollback"
+      }
+      form_param: {
+        name: "Body"
+        type: textarea
+        required: yes
+        default:
+        "Dear {{ customer_list.customer_name._value }},
+
+        There’s an issue with your latest Initech release.
+        We’ll be rolling you back shortly. Contact support with any questions."
+      }
+    }
   }
 
   dimension: freepremium {
