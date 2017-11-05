@@ -1,0 +1,158 @@
+explore: event_list {}
+view: event_list {
+  derived_table: {
+    sql: SELECT 'Flora Severe' AS name,'Female' AS gender,'florasevere@gmail.com' AS email,10001 AS zipcode,'SF Mission Store Launch' AS event_name,'no' AS previous_customer
+      UNION ALL
+      SELECT 'Colleen Delong','Female','colleendelong@gmail.com',10805,'SF Mission Store Launch','no'
+      UNION ALL
+      SELECT 'Lucy Willis','Female','lwillis@yahoo.com',10176,'SF Mission Store Launch','no'
+      UNION ALL
+      SELECT 'Damian Wellman','Male','dwellman@gmail.com',10045,'SF Mission Store Launch','no'
+      UNION ALL
+      SELECT 'Russell Choy','Male','russellchoy@gmail.com',14043,'SF Mission Store Launch','no'
+      UNION ALL
+      SELECT 'Florence Larios','Female','flarios@yahoo.com',10072,'SF Mission Store Launch','no'
+      UNION ALL
+      SELECT 'Sharon Garcia','Female','sharon.garcia@yahoo.com',12170,'SF Mission Store Launch','yes'
+      UNION ALL
+      SELECT 'Jeannette Weisser','Female','jweisser@gmail.com',12986,'SF Mission Store Launch','yes'
+      UNION ALL
+      SELECT 'Maryetta Ward','Female','mward@gmail.com',10276,'SF Mission Store Launch','no'
+      UNION ALL
+      SELECT 'Lorena Joyner','Female','ljoyner@yahoo.com',10128,'SF Mission Store Launch','no'
+      UNION ALL
+      SELECT 'Flora Severe','Female','florasevere@gmail.com',10001,'Office Warming','yes'
+      UNION ALL
+      SELECT 'Lucy Willis','Female','lwillis@yahoo.com',10176,'Office Warming','yes'
+      UNION ALL
+      SELECT 'Damian Wellman','Male','dwellman@gmail.com',10045,'Office Warming','yes'
+      UNION ALL
+      SELECT 'Colleen Delong','Female','colleendelong@gmail.com',10805,'Office Warming','no'
+      UNION ALL
+      SELECT 'Russell Choy','Male','russellchoy@gmail.com',14043,'Office Warming','no'
+      UNION ALL
+      SELECT 'Sharon Garcia','Female','sharon.garcia@yahoo.com',12170,'Office Warming','no'
+      UNION ALL
+      SELECT 'Florence Larios','Female','flarios@yahoo.com',10072,'Office Warming','no'
+      UNION ALL
+      SELECT 'Maryetta Ward','Female','mward@gmail.com',10276,'Office Warming','no'
+       ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [detail*]
+  }
+
+  dimension: name {
+    type: string
+    sql: ${TABLE}.name ;;
+  }
+
+  dimension: gender {
+    type: string
+    sql: ${TABLE}.gender ;;
+  }
+
+  dimension: email {
+    tags: ["email"]
+    type: string
+    sql: ${TABLE}.email ;;
+  }
+
+  dimension: zipcode {
+    type: string
+    sql: ${TABLE}.zipcode ;;
+  }
+
+  dimension: event_name {
+    type: string
+    sql: ${TABLE}.event_name ;;
+  }
+
+  dimension: previous_customer {
+    type: string
+    sql: ${TABLE}.previous_customer ;;
+  }
+
+  set: detail {
+    fields: [
+      name,
+      gender,
+      email,
+      zipcode,
+      event_name,
+      previous_customer
+    ]
+  }
+}
+
+
+
+
+
+
+explore: customer_list {}
+view: customer_list {
+  derived_table: {
+    sql:
+  SELECT 'Scent.ly' AS "customer_name",
+          'Premium' AS "FreePremium",
+          'Enterprise' AS "Size",
+          '3.0' AS "release",
+          '853-874-0928' AS Point_of_Contact
+      UNION ALL
+      SELECT 'Paper source','Free','Mid Market','3.0', '233-987-2922'
+      UNION ALL
+      SELECT 'Fashion.ly','Free','Mid Market','3.0', '879-098-0182'
+      UNION ALL
+      SELECT 'Acumen','Premium','Mid Market','2.0', '892-234-9832'
+      UNION ALL
+      SELECT 'Buildify','Premium','Mid Market','2.0', '908-098-0000'
+      UNION ALL
+      SELECT 'Ecoveta','Premium','Mid Market','2.0', '992-232-4343'
+      UNION ALL
+      SELECT 'DigiQ','Premium','Mid Market','2.0', '133-783-4343'
+      UNION ALL
+      SELECT 'Finistone','Free','SMB','1.0', '893-232-7893'
+      UNION ALL
+      SELECT 'Acorn','Free','SMB','1.0', '567-232-7782'
+      UNION ALL
+      SELECT 'Rentify','Free','SMB','1.0', '202-282-8843';;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [detail*]
+  }
+
+  dimension: customer_name {
+    type: string
+    sql: ${TABLE}.customer_name ;;
+  }
+
+  dimension: freepremium {
+    type: string
+    sql: ${TABLE}.freepremium ;;
+  }
+
+  dimension: size {
+    type: string
+    sql: ${TABLE}.size ;;
+  }
+
+  dimension: release {
+    type: string
+    sql: ${TABLE}.release ;;
+  }
+
+  dimension: point_of_contact {
+    tags: ["phone"]
+    type: string
+    sql: ${TABLE}.point_of_contact ;;
+  }
+
+  set: detail {
+    fields: [customer_name, freepremium, size, release]
+  }
+}
