@@ -111,9 +111,26 @@ view: customer_list {
       UNION ALL
       SELECT 'Finistone','Free','SMB','1.0', '893-232-7893'
       UNION ALL
-      SELECT 'Acorn','Free','SMB','1.0', '567-232-7782'
+      SELECT 'Blackstar','Free','SMB','1.0', '567-232-7782'
       UNION ALL
-      SELECT 'Rentify','Free','SMB','1.0', '202-282-8843';;
+      SELECT 'Mylie','Free','SMB','1.0', '202-282-8843'
+            UNION ALL
+      SELECT 'Cyprus','Free','Mid Market','3.0', '879-098-0182'
+      UNION ALL
+      SELECT 'Papel','Premium','Mid Market','3.0', '892-234-9832'
+      UNION ALL
+      SELECT 'Woddify','Premium','Mid Market','3.0', '908-098-0000'
+      UNION ALL
+      SELECT 'LimeFight','Premium','Mid Market','3.0', '992-232-4343'
+      UNION ALL
+      SELECT 'Dire.io','Premium','Mid Market','2.0', '133-783-4343'
+      UNION ALL
+      SELECT 'Copit.io','Free','SMB','1.0', '893-232-7893'
+      UNION ALL
+      SELECT 'Newly','Free','SMB','1.0', '567-232-7782'
+      UNION ALL
+      SELECT 'Rubilsify','Free','SMB','1.0', '202-282-8843'
+      ;;
   }
 
   dimension: customer_name {
