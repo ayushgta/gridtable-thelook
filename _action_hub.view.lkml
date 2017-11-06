@@ -93,12 +93,12 @@ view: customer_list {
   derived_table: {
     sql:
   SELECT 'Scent.ly' AS "customer_name",
-          'Premium' AS "FreePremium",
+          'Premium' AS "StandardPremium",
           'Enterprise' AS "Size",
           '3.0' AS "release",
           '853-874-0928' AS Point_of_Contact
       UNION ALL
-      SELECT 'Paper source','Free','Mid Market','3.0', '233-987-2922'
+      SELECT 'Paper source','Standard','Mid Market','3.0', '233-987-2922'
       UNION ALL
       SELECT 'Acumen','Premium','Mid Market','2.0', '892-234-9832'
       UNION ALL
@@ -108,13 +108,13 @@ view: customer_list {
       UNION ALL
       SELECT 'DigiQ','Premium','Mid Market','2.0', '133-783-4343'
       UNION ALL
-      SELECT 'Finistone','Free','SMB','1.0', '893-232-7893'
+      SELECT 'Finistone','Standard','SMB','1.0', '893-232-7893'
       UNION ALL
-      SELECT 'Blackstar','Free','SMB','1.0', '567-232-7782'
+      SELECT 'Blackstar','Standard','SMB','1.0', '567-232-7782'
       UNION ALL
-      SELECT 'Mylie','Free','SMB','1.0', '202-282-8843'
+      SELECT 'Mylie','Standard','SMB','1.0', '202-282-8843'
             UNION ALL
-      SELECT 'Cyprus','Free','Mid Market','3.0', '879-098-0182'
+      SELECT 'Cyprus','Standard','Mid Market','3.0', '879-098-0182'
       UNION ALL
       SELECT 'Papel','Premium','Mid Market','3.0', '892-234-9832'
       UNION ALL
@@ -124,11 +124,11 @@ view: customer_list {
       UNION ALL
       SELECT 'Dire.io','Premium','Mid Market','2.0', '133-783-4343'
       UNION ALL
-      SELECT 'Copit.io','Free','SMB','1.0', '893-232-7893'
+      SELECT 'Copit.io','Standard','SMB','1.0', '893-232-7893'
       UNION ALL
-      SELECT 'Newly','Free','SMB','1.0', '567-232-7782'
+      SELECT 'Newly','Standard','SMB','1.0', '567-232-7782'
       UNION ALL
-      SELECT 'Rubilsify','Free','SMB','1.0', '202-282-8843'
+      SELECT 'Rubilsify','Standard','SMB','1.0', '202-282-8843'
       ;;
   }
 
@@ -161,9 +161,9 @@ view: customer_list {
     }
   }
 
-  dimension: free_premium {
+  dimension: standard_premium {
     type: string
-    sql: ${TABLE}.freepremium ;;
+    sql: ${TABLE}.standardpremium ;;
   }
 
   dimension: size {
@@ -183,6 +183,6 @@ view: customer_list {
   }
 
   set: detail {
-    fields: [name, free_premium, size, release]
+    fields: [name, standard_premium, size, release]
   }
 }
