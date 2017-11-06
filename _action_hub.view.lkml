@@ -100,8 +100,6 @@ view: customer_list {
       UNION ALL
       SELECT 'Paper source','Free','Mid Market','3.0', '233-987-2922'
       UNION ALL
-      SELECT 'Fashion.ly','Free','Mid Market','3.0', '879-098-0182'
-      UNION ALL
       SELECT 'Acumen','Premium','Mid Market','2.0', '892-234-9832'
       UNION ALL
       SELECT 'Buildify','Premium','Mid Market','2.0', '908-098-0000'
@@ -137,6 +135,30 @@ view: customer_list {
   dimension: name {
     type: string
     sql: ${TABLE}.customer_name ;;
+    tags: ["email"]
+    action: {
+      label: "Email Release Notice"
+      url: "https://desolate-refuge-53336.herokuapp.com/posts"
+      icon_url: "https://sendgrid.com/favicon.ico"
+      param: {
+        name: "some_auth_code"
+        value: "abc123456"
+      }
+      form_param: {
+        name: "Subject"
+        required: yes
+        default: "Release Notification - {{ customer_list.release._value }}"
+      }
+      form_param: {
+        name: "Body"
+        type: textarea
+        required: yes
+        default:
+        "Dear {{ customer_list.name._value }},
+
+        There’s an issue with your latest Initech release. We’ll be rolling you back shortly. Contact support with any questions"
+      }
+    }
   }
 
   dimension: free_premium {
