@@ -33,6 +33,11 @@ view: products {
     sql: ${TABLE}.department ;;
   }
 
+  dimension: department_dashboard {
+    sql: CONCAT("/dashboards/1095?Department=", ${TABLE}.department) ;;
+    tags: ["looker_dashboard_url"]
+  }
+
   dimension: item_name {
     sql: ${TABLE}.item_name ;;
   }
