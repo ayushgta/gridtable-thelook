@@ -83,6 +83,11 @@ view: users {
     tags: ["email"]
   }
 
+  dimension: phone {
+    sql: "16508675309"  ;;
+    tags: ["phone"]
+  }
+
   dimension: email_500 {
     sql: ${email} ;;
     suggest_dimension: email_500_suggest
