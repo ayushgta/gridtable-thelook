@@ -180,7 +180,7 @@ view: users {
 
   # MEASURES #
 
-  measure: countz {
+  measure: count {
     type: count_distinct
     sql: COALESCE(${id}, 0) ;;
     drill_fields: [detail*]
