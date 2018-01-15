@@ -119,6 +119,13 @@ view: orders {
   }
 
   dimension: status {
+    label:
+      "{% if _user_attributes['language_preference'] == 'Spanish' %} Estado
+       {% elsif _user_attributes['language_preference'] == 'French' %} Condition
+       {% elsif _user_attributes['language_preference'] == 'German' %} Stellung
+       {% elsif _user_attributes['language_preference'] == 'Japanese' %} 状態
+       {% elsif _user_attributes['language_preference'] == 'chinese_simplified' %} 状况
+       {% else %} Status {% endif %}"
     sql: ${TABLE}.status ;;
   }
 
