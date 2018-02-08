@@ -84,7 +84,7 @@ view: users {
   }
 
   dimension: phone {
-    sql: "16508675309"  ;;
+    sql: CONCAT("165086", ${id})   ;;
     tags: ["phone"]
   }
 
