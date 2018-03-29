@@ -368,6 +368,12 @@ view: orders {
        {% elsif _user_attributes['language_preference'] == 'German' %} 1.5
       {% else %} 1 {% endif %}"
       ;;
+    html:
+    {% if _user_attributes['language_preference'] == 'Spanish' %} €{{rendered_value}}
+    {% elsif _user_attributes['language_preference'] == 'French' %} {{rendered_value}}FR
+    {% elsif _user_attributes['language_preference'] == 'German' %} {{rendered_value}}DE
+    {% else %} ${{rendered_value}} {% endif %}
+    ;;
     value_format_name: decimal_2
   }
 
