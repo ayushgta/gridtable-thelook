@@ -117,7 +117,7 @@ view: users {
        ;;
   }
 
-  dimension: gender {}
+  dimension: genderr {}
 
   dimension: name {
     sql: CONCAT(${TABLE}.first_name,' ', ${TABLE}.last_name) ;;
