@@ -5,6 +5,11 @@ connection: "thelook"
 include: "*.view"
 include: "*.dashboard"
 
+datagroup: aryeh_datagroup {
+  sql_trigger:  SELECT 1 ;;
+  max_cache_age: "24 hours"
+}
+
 explore: order_items {
   view_name: order_items
 

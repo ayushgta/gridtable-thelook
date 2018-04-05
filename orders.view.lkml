@@ -351,11 +351,30 @@ view: orders {
     type: sum
     sql: ${total_amount_of_order_usd} ;;
     value_format_name: decimal_2
-
-    filters: {
-      field: is_first_purchase
-      value: "yes"
     }
+
+  measure: total_first_purchase_revenue_currencied {
+    label:
+      "{% if _user_attributes['language_preference'] == 'Spanish' %} Revenue (€)
+       {% elsif _user_attributes['language_preference'] == 'French' %} Revenue (FR)
+       {% elsif _user_attributes['language_preference'] == 'German' %} Revenue (DE)
+      {% else %} Revenue ($) {% endif %}"
+    type: sum
+    sql:
+      ${total_amount_of_order_usd}
+      *
+      "{% if _user_attributes['language_preference'] == 'Spanish' %} 1.5
+       {% elsif _user_attributes['language_preference'] == 'French' %} 1.5
+       {% elsif _user_attributes['language_preference'] == 'German' %} 1.5
+      {% else %} 1 {% endif %}"
+      ;;
+    html:
+    {% if _user_attributes['language_preference'] == 'Spanish' %} €{{rendered_value}}
+    {% elsif _user_attributes['language_preference'] == 'French' %} {{rendered_value}}FR
+    {% elsif _user_attributes['language_preference'] == 'German' %} {{rendered_value}}DE
+    {% else %} ${{rendered_value}} {% endif %}
+    ;;
+    value_format_name: decimal_2
   }
 
   measure: first_purchase_count {
