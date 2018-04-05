@@ -54,11 +54,6 @@ view: users {
     drill_fields: [city, zipcode]
   }
 
-  dimension: statee2 {
-    sql: ${TABLE}.state ;;
-    drill_fields: [city, zipcode]
-  }
-
   dimension: country {
     drill_fields: [state, city, zipcode]
   }
