@@ -276,7 +276,14 @@ view: orders {
 
   measure: sum_total_amount_of_order_usd {
     type: sum
-    sql: ${total_amount_of_order_usd} ;;
+    sql: ${total_amount_of_order_usd}*1000000000 ;;
+    html: {{ rendered_value | replace: ".", "," }} ;;
+    value_format: "###\ ###\ ###\ ###\ ###\ ###.00"
+  }
+
+  measure: sum_total_amount_of_order_usd_2 {
+    type: sum
+    sql: ${total_amount_of_order_usd}*1000 ;;
     value_format_name: usd
   }
 
