@@ -36,6 +36,71 @@ view: order_items {
     sql: ${TABLE}.sale_price ;;
   }
 
+  dimension: sale_price_eu {
+    description: "The sale price reflects the price that the item was sold at."
+    type: number
+    value_format_name: eur
+    sql: ${TABLE}.sale_price/1.2 ;;
+  }
+
+  dimension: sale_price_jp {
+    description: "The sale price reflects the price that the item was sold at."
+    type: number
+    value_format_name: "\"¥\"0.00"
+    sql: ${TABLE}.sale_price*100 ;;
+  }
+
+  dimension: sale_price_cn {
+    description: "The sale price reflects the price that the item was sold at."
+    type: number
+    value_format_name: "CNY0.00"
+    sql: ${TABLE}.sale_price*6 ;;
+  }
+
+  dimension: sale_price_local {
+    description: "The sale price reflects the price that the item was sold at."
+  sql:
+    {% if _user_attributes['language_preference'] == 'Spanish' %} ${sale_price_eu}
+    {% elsif _user_attributes['language_preference'] == 'French' %} ${sale_price_eu}
+    {% elsif _user_attributes['language_preference'] == 'German' %} ${sale_price_eu}
+    {% elsif _user_attributes['language_preference'] == 'Japanese' %} ${sale_price_jp}
+    {% elsif _user_attributes['language_preference'] == 'chinese_simplified' %} ${sale_price_cn}
+    {% else %} ${sale_price} {% endif %} ;;
+  }
+
+  dimension: sale_price_html {
+    description: "The sale price reflects the price that the item was sold at."
+    type: string
+    value_format_name: decimal_2
+  sql:
+    {% if _user_attributes['language_preference'] == 'Spanish' %} ${sale_price_eu}
+    {% elsif _user_attributes['language_preference'] == 'French' %} ${sale_price_eu}
+    {% elsif _user_attributes['language_preference'] == 'German' %} ${sale_price_eu}
+    {% elsif _user_attributes['language_preference'] == 'Japanese' %} ${sale_price_jp}
+    {% elsif _user_attributes['language_preference'] == 'chinese_simplified' %} ${sale_price_cn}
+    {% else %} ${sale_price} {% endif %} ;;
+  html:
+    {% if _user_attributes['language_preference'] == 'Spanish' %} €{{rendered_value}}
+    {% elsif _user_attributes['language_preference'] == 'French' %} €{{rendered_value}}
+    {% elsif _user_attributes['language_preference'] == 'German' %} €{{rendered_value}}
+    {% elsif _user_attributes['language_preference'] == 'Japanese' %} ¥{{rendered_value}}
+    {% elsif _user_attributes['language_preference'] == 'chinese_simplified' %} CNY{{rendered_value}}
+    {% else %} {{rendered_value}} {% endif %} ;;
+  }
+
+
+  dimension: sale_price_currencied {
+    description: "The sale price reflects the price that the item was sold at."
+    type: string
+    sql:
+       {% if _user_attributes['language_preference'] == 'Spanish' %} concat("€",cast(${sale_price}/1.2 as char))
+       {% elsif _user_attributes['language_preference'] == 'French' %} concat("€",cast(${sale_price}/1.2 as char))
+       {% elsif _user_attributes['language_preference'] == 'German' %} concat("€",cast(${sale_price}/1.2 as char))
+       {% elsif _user_attributes['language_preference'] == 'Japanese' %} concat("¥",cast(${sale_price}*100 as char))
+       {% elsif _user_attributes['language_preference'] == 'chinese_simplified' %} concat("CNY",cast(${sale_price}*6 as char))
+       {% else %} ${sale_price} {% endif %} ;;
+  }
+
   dimension: percent_of_total_sale_price {
     type: number
     value_format_name: percent_1
