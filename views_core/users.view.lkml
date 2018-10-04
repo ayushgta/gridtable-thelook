@@ -71,7 +71,7 @@ view: users {
 
   dimension_group: created {
     type: time
-    timeframes: [time, date, week, month, year]
+    timeframes: [time, date, week, month, year, raw]
     sql: ${TABLE}.created_at ;;
   }
 

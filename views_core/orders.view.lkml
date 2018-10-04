@@ -63,9 +63,17 @@ view: orders {
       END ;;
   }
 
+  dimension_group: since_user_created {
+    type: duration
+    intervals: [day, week, month]
+    sql_start: ${users.created_raw};;
+    sql_end: ${orders.created_raw};;
+  }
+
   dimension_group: created {
     type: time
     timeframes: [
+      raw,
       time,
       date,
       week,
