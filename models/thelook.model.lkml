@@ -6,6 +6,7 @@ include: "../views_core/*.view"
 include: "../views_other/*.view"
 include: "../views_pdts/*.view"
 include: "../views_pdts/data_pdts/*.view"
+include: "*"
 
 datagroup: aryeh_datagroup {
   sql_trigger:  SELECT 1 ;;
