@@ -6,7 +6,7 @@ view: users {
     type: number
     primary_key: yes
     sql: ${TABLE}.id ;;
-    tags: ["user_id"]
+    tags: ["user_id", "braze_id", "external_id"]
 
     link: {
       label: "View Order History"
