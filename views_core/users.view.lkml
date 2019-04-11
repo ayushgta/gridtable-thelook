@@ -6,7 +6,7 @@ view: users {
     type: number
     primary_key: yes
     sql: ${TABLE}.id ;;
-    tags: ["user_id"]
+    tags: ["user_id", "braze_id", "external_id"]
 
     link: {
       label: "View Order History"
@@ -80,7 +80,7 @@ view: users {
       url: "/dashboards/thelook/4_user_lookup?email={{ value | encode_uri }}"
       label: "User Lookup for {{ value }}"
     }
-    tags: ["email"]
+    tags: ["email", "braze_id"]
   }
 
   dimension: phone {
