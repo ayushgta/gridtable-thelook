@@ -8,6 +8,10 @@ include: "../views_pdts/*.view"
 include: "../views_pdts/data_pdts/*.view"
 include: "../*.dashboard"
 
+golink: a {
+  url: "https://www.google.com/q=flowers"
+}
+
 datagroup: aryeh_datagroup {
   sql_trigger:  SELECT 1 ;;
   max_cache_age: "24 hours"
