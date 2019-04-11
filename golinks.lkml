@@ -1,3 +1,3 @@
 golink: a {
-  url: "google.com"
+  url: "https://google.com"
 }
