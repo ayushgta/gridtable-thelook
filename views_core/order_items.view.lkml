@@ -46,14 +46,14 @@ view: order_items {
   dimension: sale_price_jp {
     description: "The sale price reflects the price that the item was sold at."
     type: number
-    value_format_name: "\"¥\"0.00"
+    value_format: "\"¥\"0.00"
     sql: ${TABLE}.sale_price*100 ;;
   }
 
   dimension: sale_price_cn {
     description: "The sale price reflects the price that the item was sold at."
     type: number
-    value_format_name: "CNY0.00"
+#     value_format: "CNY0.00"
     sql: ${TABLE}.sale_price*6 ;;
   }
 
