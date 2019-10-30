@@ -52,6 +52,11 @@ view: users {
 
   dimension: state {
     drill_fields: [city, zipcode]
+    link: {
+      label: "lookup"
+      url: "https://google.com?q={{ value }}"
+      icon_url : "https://looker.com/favicon.ico"
+    }
   }
 
   dimension: country {
@@ -73,6 +78,23 @@ view: users {
     type: time
     timeframes: [time, date, week, month, year, raw]
     sql: ${TABLE}.created_at ;;
+  }
+
+  dimension: image {
+    sql: CONCAT("https://picsum.photos/seed/shadow@mailinator.com/", ROUND(FLOOR(RAND()*(200-50)+50), -1), "/", ROUND(FLOOR(RAND()*(200-50)+50), -1)) ;;
+    html: <div>
+            <img src="{{ value }}">
+          </div>;;
+  }
+
+  dimension: bio {
+    sql: LEFT("The book certainly focuss. Four prayers that the arithmetic bottles had drunk were the new tools. Until they can relax with its warrant, had the teams that confusions had unbent signed the discoveries of communion without amplitude? Before coal rigid as bus extended, had food rested? Combination hidden as boss lives to mark her. Before succeeding has verged,a cloud is a distinctive shade, and a knee whose awe has cried is a seriously distinguishing figure. The ability-billing voice stretches for candles around algebra. Combination whose world was glancing surrendered; guided near cause,double drawings (triple veils) farmed this. Where agreeing had brought forth every extraordinary crease who can't dream,who were you shaping?", FLOOR(RAND()*(600-10)+10)) ;;
+    html:  <div>{{ value }}</div> ;;
+  }
+
+  dimension: note {
+    sql: CONCAT(LEFT("The original treaty: Babel whose eternity feared to advance. The later drink races cider; and setting: a spring. A whale --  had a panel whose caution ran vibrated? The port sensitive  as tale (a wild dress who learns the class) works. An insect  out of a horn is every caution year. Although a family that  the decree totally dissipated transformed identifying, indeed  ending difference planned to parade. A detailed governor  who blinks paces for twelve paths. The reaction was their  older suitcase whose trial might travel. Why don't carbons  upon a sheep blink? Balancing us, the comfort motor cared  below the string. Though drifting rather attended from August, a border who was balancing would affect the frost strength  that the landing twisted.", FLOOR(RAND()*(600-10)+10))) ;;
+    html: <div><details><summary>note</summary><div>{{ value }}</div></details></div> ;;
   }
 
   dimension: email {
