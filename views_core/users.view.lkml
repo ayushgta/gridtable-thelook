@@ -80,6 +80,7 @@ view: users {
     sql: ${TABLE}.created_at ;;
   }
 
+
   dimension: image {
     sql: CONCAT("https://picsum.photos/seed/shadow@mailinator.com/", ROUND(FLOOR(RAND()*(200-50)+50), -1), "/", ROUND(FLOOR(RAND()*(200-50)+50), -1)) ;;
     html: <div>
@@ -95,6 +96,19 @@ view: users {
   dimension: note {
     sql: CONCAT(LEFT("The original treaty: Babel whose eternity feared to advance. The later drink races cider; and setting: a spring. A whale --  had a panel whose caution ran vibrated? The port sensitive  as tale (a wild dress who learns the class) works. An insect  out of a horn is every caution year. Although a family that  the decree totally dissipated transformed identifying, indeed  ending difference planned to parade. A detailed governor  who blinks paces for twelve paths. The reaction was their  older suitcase whose trial might travel. Why don't carbons  upon a sheep blink? Balancing us, the comfort motor cared  below the string. Though drifting rather attended from August, a border who was balancing would affect the frost strength  that the landing twisted.", FLOOR(RAND()*(600-10)+10))) ;;
     html: <div><details><summary>note</summary><div>{{ value }}</div></details></div> ;;
+  }
+
+  dimension: logo {
+    sql: ${email} ;;
+    html: <a href="http://looker.com" target="_new">
+      <img src="http://logo.clearbit.com/indiegogo.com" height=128 width=128></a>
+      ;;
+  }
+
+  dimension: html_bug_test{
+    sql: ${TABLE}.first_name;;
+    html:
+    <div style="font-size:xx-large;">{{ rendered_value }}</div>;;
   }
 
   dimension: email {
