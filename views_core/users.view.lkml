@@ -157,6 +157,9 @@ view: users {
 
   dimension: name {
     sql: CONCAT(${TABLE}.first_name,' ', ${TABLE}.last_name) ;;
+    html:
+    <div style="font-size:xx-large;">{{ rendered_value }}</div>;;
+
   }
 
   filter: dimension_picker {
